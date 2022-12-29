@@ -5,7 +5,7 @@
 // this file contains all the configuration for the backup script
 
 $host = "localhost";  // host name
-$user = "root";      // user name
+$user = "root";      // username
 $password = "";     // password
 $database = "test"; // database name
 $backupFolder =  '/backups/'; // backup folder name
