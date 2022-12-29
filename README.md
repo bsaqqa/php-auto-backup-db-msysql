@@ -9,11 +9,11 @@ I run it as a cron job on Windows/Ubuntu servers to make sure we have a latest v
 - [X] Easy to install and configure
 - [X] Can be run as a cron job on Windows and Ubuntu servers
 - [ ] Create it as a composer package (Coming Soon)
-- [ ] Supports OneDrive integration (Coming soon)
 - [ ] Supports multiple database servers (Coming Soon)
 - [ ] Supports different database engines (Coming Soon)
 - [ ] Supports automatic restoration of backups (Coming Soon)
 - [ ] Supports email notifications (Coming Soon)
+- [ ] Supports OneDrive integration (Coming soon)
 - [ ] Supports cloud storage (Coming Soon)
 - [ ] Supports encryption of backups (Coming Soon)
 
