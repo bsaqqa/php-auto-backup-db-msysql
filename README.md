@@ -10,7 +10,6 @@ I run it as a cron job on Windows/Ubuntu servers to make sure we have a latest v
 - [X] Can be run as a cron job on Windows and Ubuntu servers
 - [ ] Create it as a composer package (Coming Soon)
 - [ ] Supports OneDrive integration (Coming soon)
-- [ ] Create it as a composer package (Coming Soon)
 - [ ] Supports multiple database servers (Coming Soon)
 - [ ] Supports different database engines (Coming Soon)
 - [ ] Supports automatic restoration of backups (Coming Soon)
