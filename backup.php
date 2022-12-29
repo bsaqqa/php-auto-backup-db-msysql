@@ -1,17 +1,13 @@
 <?php 
 
 require 'helpers.php';
+require 'config.php';
 
 try{
     
     // create DB connection 
-    $host = "localhost";
-    $user = "root";
-    $password = "";
-    $database = "test";
-    $fileName = $database .'-' . date('Y-m-d').'-'. time() . '.sql';
-    $dir = dirname(__FILE__) . '/backups/'. $fileName;
-
+    $dir = dirname(__FILE__) . $backupFolder . $fileName;
+  
     $conn = new mysqli($host, $user, $password, $database);
 
     // Check connection
@@ -39,29 +35,33 @@ try{
 
 
     // remove old backups (older than 7 days)
-    $files = glob(dirname(__FILE__) . '/backups/*'); // get all file names
+    $files = glob(dirname(__FILE__) . $backupFolder . '*'); // get all file names
     foreach($files as $file){ // iterate files
         // dd($files, $file, time() - filemtime($file));
         if(is_file($file) && time() - filemtime($file) >= 60*60*24*7) // if file is older than 7 days 60*60*24*7
             unlink($file); // delete file
     }
 
+    if($hasOneDriveFolder){
 
-    // add backup file to one drive (using onedrive local folder)
-    $onedrive = dirname(__FILE__) . '/onedrive/';
-    $backup = dirname(__FILE__) . '/backup-' .$fileName . '.zip';
-    copy($backup, $onedrive . $fileName . '.zip');
-    
-    // remove backup file from server
-    unlink($backup);
+        // add backup file to one drive (using onedrive local folder)
+        $onedrive = dirname(__FILE__) . '/onedrive/';
+        $backup = dirname(__FILE__) . '/backup-' .$fileName . '.zip';
+        copy($backup, $onedrive . $fileName . '.zip');
+        
+        // remove backup file from server
+        unlink($backup);
 
-    // remove old backups from one drive (older than 7 days)
-    $files = glob(dirname(__FILE__) . '/onedrive/*'); // get all file names
-    foreach($files as $file){ // iterate files
-        // dd($files, $file, time() - filemtime($file));
-        if(is_file($file) && time() - filemtime($file) >= 60*60*24*7) // if file is older than 7 days
-            unlink($file); // delete file
+
+        // remove old backups from one drive (older than 7 days)
+        $files = glob(dirname(__FILE__) . '/onedrive/*'); // get all file names
+        foreach($files as $file){ // iterate files
+            // dd($files, $file, time() - filemtime($file));
+            if(is_file($file) && time() - filemtime($file) >= 60*60*24*7) // if file is older than 7 days
+                unlink($file); // delete file
+        }
     }
+
   
     // success message
     echo 'Backup created successfully';
